@@ -15,6 +15,10 @@ BOOTLOADER = $(TOPDIR)/bootloader.bin
 EXTRA-FILES += $(DATA_GEN) $(EFFECT).exe $(EFFECT).adf $(EFFECT).rom
 CLEAN-FILES += $(DATA_GEN) $(EFFECT).exe.dbg $(EFFECT).exe.map 
 
+# Evaluate Amiga model for emulation
+EMUCFG := A500 A1200 # first one is default
+AMIGA := $(firstword $(filter $(EMUCFG),$(MAKECMDGOALS) $(firstword $(EMUCFG))))
+
 all: build
 
 # Check if library is up-to date if someone is asking explicitely
@@ -83,10 +87,10 @@ debug-floppy: $(EFFECT).exe.dbg $(EFFECT).adf
 	$(LAUNCH) -d -f $(EFFECT).adf -e $(EFFECT).elf
 
 run: $(EFFECT).rom $(EFFECT).exe.dbg $(EFFECT).adf
-	$(LAUNCH) -r $(EFFECT).rom -e $(EFFECT).exe.dbg -f $(EFFECT).adf
+	$(LAUNCH) -m $(AMIGA) -e $(EFFECT).exe.dbg -f $(EFFECT).adf
 
 debug: $(EFFECT).rom $(EFFECT).exe.dbg $(EFFECT).adf
-	$(LAUNCH) -d -r $(EFFECT).rom -e $(EFFECT).exe.dbg -f $(EFFECT).adf
+	$(LAUNCH) -d -m $(AMIGA) -e $(EFFECT).exe.dbg -f $(EFFECT).adf
 
-.PHONY: run floppy
+.PHONY: run floppy $(EMUCFG)
 .PRECIOUS: $(BOOTLOADER)

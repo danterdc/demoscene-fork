@@ -4,7 +4,7 @@ governor_warning = 0
 fade_in_duration = 0
 fade_out_duration = 0
 accuracy = 1
-amiga_model = A500
+amiga_model = A1200
 # A500 A500+ A600 A1200 A1200/020 A3000 A4000/040
 # chip_memory = 512
 # slow_memory = 512
@@ -34,3 +34,8 @@ keyboard_key_f10 = action_enter_debugger
 keyboard_key_f9 = action_screenshot
 joystick_port_1_mode = nothing
 uae_boot_rom_uae = min
+
+kickstart_file = roms/kick31.A1200.rom
+writable_floppy_images = 1
+
+hard_drive_0 = dh0

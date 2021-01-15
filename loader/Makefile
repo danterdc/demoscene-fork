@@ -4,6 +4,7 @@ TOPDIR := $(realpath ..)
 #            (for intros or trackmos that can be launched from AmigaOS)
 # TRACKMO => initialize file system and floppy device driver
 CPPFLAGS += -DTRACKMO
+# CPPFLAGS += -DAMIGAOS
 
 LIBNAME := loader
 SOURCES := \
